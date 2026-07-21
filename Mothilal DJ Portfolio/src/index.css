@@ -32,6 +32,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Prevent horizontal scroll on any viewport */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Lock body scroll while mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #08090C; }
@@ -184,3 +195,13 @@ body {
   letter-spacing: 0.01em;
 }
 .nav-link:hover { color: #fff; }
+
+/* Mobile nav drawer */
+.mobile-nav-link {
+  font-size: 17px;
+  color: rgba(209, 213, 219, 0.9);
+  transition: color 0.15s;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+.mobile-nav-link:hover { color: #34D399; }
