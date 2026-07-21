@@ -196,7 +196,7 @@ body.menu-open {
 }
 .nav-link:hover { color: #fff; }
 
-/* Mobile nav drawer */
+/* Mobile nav drawer links */
 .mobile-nav-link {
   font-size: 17px;
   color: rgba(209, 213, 219, 0.9);
@@ -205,3 +205,99 @@ body.menu-open {
   letter-spacing: 0.01em;
 }
 .mobile-nav-link:hover { color: #34D399; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Bulletproof responsive layer
+   Tailwind v4 compiles its sm:/md:/lg: utilities using the modern CSS
+   Media Queries Level 4 range syntax, e.g. `@media (width>=48rem)`.
+   Some Android browsers (older Chrome/WebView/OEM builds) fail to parse
+   that syntax, which silently drops ALL responsive rules at once.
+   The rules below use classic `min-width`/`max-width` syntax, which every
+   browser supports, and reproduce the exact same computed values Tailwind
+   uses at each breakpoint — so desktop (>=768px, tested in a modern
+   browser) renders pixel-identical to before, while phones get correct
+   behavior everywhere.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Navbar: desktop links + Hire Me button vs. mobile hamburger */
+.desktop-nav-group {
+  display: none;
+}
+@media (min-width: 768px) {
+  .desktop-nav-group {
+    display: flex;
+  }
+}
+
+.mobile-nav-toggle {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+/* Extra safety net: force the mobile overlay/drawer off at desktop widths.
+   (They already self-hide via transform/opacity regardless of this rule,
+   this just also removes them from layout/hit-testing/focus order.) */
+@media (min-width: 768px) {
+  .mobile-only-fixed {
+    display: none;
+  }
+}
+
+/* Hero heading — fluid on phones (320–639px), then locks to the exact
+   same sizes Tailwind's sm:/md: classes used to produce:
+   sm (>=640px): 3rem / line-height 1      (was text-5xl)
+   md (>=768px): 4.5rem / line-height 1    (was text-7xl, unchanged) */
+.hero-heading {
+  font-size: clamp(1.6rem, 8vw, 2.25rem);
+  line-height: 1.1;
+}
+@media (min-width: 640px) {
+  .hero-heading {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+}
+
+/* Hero CTA buttons: stacked + full-width under 640px, side-by-side + auto-width at/above */
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .hero-cta-group {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.hero-cta-btn {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .hero-cta-btn {
+    width: auto;
+  }
+}
+
+/* Hero stats row: always wraps (no breakpoint dependency), gap widens at sm+ */
+.hero-stats-row {
+  display: flex;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .hero-stats-row {
+    gap: 2rem;
+  }
+}
+

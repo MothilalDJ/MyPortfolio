@@ -121,7 +121,7 @@ function Navbar() {
       </div>
 
       {/* Desktop nav links */}
-      <div className="hidden md:flex items-center gap-8">
+      <div className="desktop-nav-group items-center gap-8">
         {navItems.map(item => (
           <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">{item}</a>
         ))}
@@ -129,7 +129,7 @@ function Navbar() {
 
       <a
         href="mailto:mothilalsathi@gmail.com"
-        className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200"
+        className="desktop-nav-group items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200"
         style={{ border: '1px solid rgba(16,185,129,0.4)', color: '#34D399', background: 'rgba(16,185,129,0.06)' }}
         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(16,185,129,0.12)' }}
         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(16,185,129,0.06)' }}
@@ -143,7 +143,7 @@ function Navbar() {
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen(o => !o)}
-        className="md:hidden flex flex-col items-center justify-center gap-1.5 w-9 h-9 rounded-lg shrink-0 focus:outline-none focus-visible:ring-2"
+        className="mobile-nav-toggle flex-col items-center justify-center gap-1.5 w-9 h-9 rounded-lg shrink-0 focus:outline-none focus-visible:ring-2"
         style={{
           border: '1px solid rgba(30,34,45,1)',
           background: 'rgba(255,255,255,0.03)',
@@ -173,7 +173,7 @@ function Navbar() {
       <div
         onClick={closeMenu}
         aria-hidden="true"
-        className="md:hidden fixed inset-0 z-40 transition-opacity duration-300"
+        className="mobile-only-fixed fixed inset-0 z-40 transition-opacity duration-300"
         style={{
           background: 'rgba(0,0,0,0.6)',
           opacity: menuOpen ? 1 : 0,
@@ -183,7 +183,7 @@ function Navbar() {
 
       {/* Mobile slide-in drawer */}
       <div
-        className="md:hidden fixed top-0 right-0 z-50 h-screen w-[78vw] max-w-[320px] flex flex-col gap-8 px-8 py-8 transition-transform duration-300 ease-out"
+        className="mobile-only-fixed fixed top-0 right-0 z-50 h-screen w-[78vw] max-w-[320px] flex flex-col gap-8 px-8 py-8 transition-transform duration-300 ease-out"
         style={{
           background: '#0F1117',
           borderLeft: '1px solid rgba(30,34,45,1)',
@@ -248,7 +248,7 @@ function HeroSection() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 leading-none">
+        <h1 className="hero-heading font-bold tracking-tight mb-4">
           <span className="text-white">Hi, I'm&nbsp;</span>
           <span className="gradient-text">Mothilal D.J</span>
         </h1>
@@ -263,10 +263,10 @@ function HeroSection() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div className="hero-cta-group items-center gap-4">
           <a
             href="#projects"
-            className="w-full sm:w-auto text-center px-7 py-3.5 rounded-2xl font-semibold text-sm text-black transition-all duration-200"
+            className="hero-cta-btn text-center px-7 py-3.5 rounded-2xl font-semibold text-sm text-black transition-all duration-200"
             style={{ background: 'linear-gradient(135deg, #10B981, #34D399)', boxShadow: '0 0 24px rgba(16,185,129,0.35)' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 36px rgba(16,185,129,0.55)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(16,185,129,0.35)' }}
@@ -277,7 +277,7 @@ function HeroSection() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="glass w-full sm:w-auto text-center px-7 py-3.5 rounded-2xl font-medium text-sm transition-all duration-200"
+            className="glass hero-cta-btn text-center px-7 py-3.5 rounded-2xl font-medium text-sm transition-all duration-200"
             style={{ color: 'rgba(209,213,219,0.9)' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(16,185,129,0.4)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '' }}
@@ -287,7 +287,7 @@ function HeroSection() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-8 mt-16 pt-8 w-full" style={{ borderTop: '1px solid rgba(30,34,45,0.8)' }}>
+        <div className="hero-stats-row flex-wrap items-center justify-center gap-x-6 gap-y-4 mt-16 pt-8 w-full" style={{ borderTop: '1px solid rgba(30,34,45,0.8)' }}>
           {[
             { label: 'HackerRank', value: '#134', sub: 'Global Rank' },
             { label: 'Projects', value: '3+', sub: 'Deployed & Active' },
